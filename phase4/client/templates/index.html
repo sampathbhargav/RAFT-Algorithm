@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>Simple message</title>
+    </head>
+    <body>
+        <div style="text-align:center">
+            <form id="message_input_form" action="/sendMessage" method="POST">
+                <h2 id="title">Sample Message collector :) </h2>
+                <input type="text" name="message_input" id="message_input" placeholder="Enter your message here"><br><br>
+                <label for="Nodes">Select a Node to send the message to: </label>
+						<select name="Nodes" id="Nodes">
+							<option value="Node1">Node 1</option>
+							<option value="Node2">Node 2</option>
+							<option value="Node3">Node 3</option>
+							<option value="Node4">Node 4</option>
+							<option value="Node5">Node 5</option>
+						</select>
+                <br><br>
+                <button type="submit">Send</button>
+            </form>
+            <br><br>
+            {% if msg %}
+                <h3>The message sent is <span style="color:blue">{{msg}}</span> </h3>
+            {% endif %}
+            <!--<h3>Current Message : </h3>
+            <div id="currentmessages"></div>
+            <h3>Messages History : </h3> 
+            <div id="messages"></div>-->
+        </div>
+    </body>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        //connect to server
+        // const socket = io.connect('http://127.0.0.1:5555');
+
+        //handle the event that is automatically emitted when connected to server
+        // socket.on('connect', function () {
+
+        /*document.getElementById('message_input_form').onsubmit = function (e) {
+            e.preventDefault();
+            let message = message_input.value.trim();
+            var select = document.getElementById('Nodes');
+            var value = select.options[select.selectedIndex].value;
+            console.log(value);
+            // if (message.length) {
+            //     socket.emit('send_message', {
+            //         message: message,
+            //         node : value
+            //     })
+            var msg = {"message": message, "node" : value}
+            fetch("http://client:4000/sendMessage", 
+        {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Headers': '*'
+            },
+        // Strigify the payload into JSON:
+        body:JSON.stringify(msg)}).then(res=>{
+                if(res.ok){
+                    return res.json()
+                }else{
+                    alert("something is wrong")
+                }
+            }).then(jsonResponse=>{
+                
+                // Log the response data in the console
+                console.log(jsonResponse)
+            } 
+            ).catch((err) => console.error(err));
+
+            message_input.value = '';
+            message_input.focus();
+        }*/
+    // });
+
+    //handle recieve message evnt emitted from server
+    // socket.on('receive_message', function (data) {
+    //     document.getElementById('messages').innerHTML = '';
+    //     document.getElementById('currentmessages').innerHTML = `<b></b> ${data[0]}`;
+    //     for (var i =0; i < data.length; i++)
+    //     {
+    //         const newNode = document.createElement('div');
+    //         newNode.innerHTML = `<b>Message ${i} :&nbsp;</b> ${data[i]}`;
+    //         document.getElementById('messages').appendChild(newNode);
+    //     }
+    // });
+
+    </script>
+</html>
